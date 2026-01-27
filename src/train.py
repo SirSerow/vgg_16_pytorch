@@ -77,6 +77,8 @@ def train(
 
         writer = SummaryWriter(output_folder)
 
+        global_step = 0
+
         for epoch in range(num_epochs):
 
             vgg_16.train()
@@ -102,7 +104,8 @@ def train(
                 loss.backward()
                 optimizer.step()
 
-                writer.add_scalar("Loss/train", loss.item(), epoch)
+                writer.add_scalar("Loss/train", loss.item(), global_step)
+                global_step += 1
 
             # save weights every epoch
             torch.save(
@@ -136,6 +139,8 @@ def train(
                 accuracy = 100 * correct / total
                 writer.add_scalar("Accuracy/test", accuracy, epoch)
                 logger.info(f"Test Accuracy after epoch {epoch+1}: {accuracy:.2f}%")
+
+        writer.close()
 
     else:
         logger.error("Train loader or test loader is None, cannot train the model.")
