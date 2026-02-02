@@ -63,6 +63,7 @@ def train(
     learning_rate = learning_rate
 
     criterion = nn.CrossEntropyLoss()
+
     optimizer = optim.Adam(vgg_16.parameters(), lr=learning_rate)
 
     num_epochs = 10
