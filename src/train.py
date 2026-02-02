@@ -183,3 +183,6 @@ if __name__ == "__main__":
         batch_size=args.batch_size,
         learning_rate=args.learning_rate,
     )
+
+    # Example command to run the training script:
+    # python src/train.py --device cuda --weight_path ../.output/train/vgg16_240623_153045/vgg16_epoch_5.pth --batch_size 8 --learning_rate 0.0001
